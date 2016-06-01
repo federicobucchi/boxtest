@@ -1,0 +1,45 @@
+{
+  "name": "boxtest",
+  "version": "1.0.0",
+  "description": "Test for basic HTML, CSS, and JavaScript knowledge",
+  "private": "true",
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 2.0.0"
+  },
+  "main": "boxtest.js",
+  "scripts": {
+    "bundle": "npm run bundle:scss & npm run bundle:js",
+    "bundle:js": "browserify --debug --noparse=jquery boxtest.js -o bundle.js",
+    "bundle:scss": "node-sass --output-style=expanded ./boxtest.scss ./bundle.css",
+    "watch": "npm run watch:js & npm run watch:scss",
+    "watch:js": "watchify --debug=true boxtest.js -o bundle.js",
+    "watch:scss": "node-sass --output-style expanded -w ./boxtest.scss ./bundle.css",
+    "server": "live-server --ignorePattern=boxtest.js,boxtest.scss --ignore=node_modules",
+    "start": "npm run bundle && npm run watch & npm run server",
+    "test": "echo \"Warning: no test specified\""
+  },
+  "author": "Larry Gordon <lgordon@us.westfield.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-plugin-syntax-async-functions": "6.8.0",
+    "babel-plugin-syntax-decorators": "6.8.0",
+    "babel-plugin-transform-class-properties": "6.9.0",
+    "babel-plugin-transform-decorators": "6.8.0",
+    "babel-plugin-transform-es2015-classes": "6.9.0",
+    "babel-plugin-transform-regenerator": "6.9.0",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-stage-0": "6.5.0",
+    "babelify": "7.3.0",
+    "browserify": "13.0.1",
+    "jquery": "2.2.3",
+    "live-server": "1.0.0",
+    "node-sass": "3.7.0",
+    "watchify": "3.7.0"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  }
+}

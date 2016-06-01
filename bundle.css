@@ -1,0 +1,171 @@
+/** Variables **/
+/** Functions **/
+/*
+ * makeCentered
+ * Move box to Center
+ * @param  {property} From where the element should be moved - top, bottom, right, left, ..
+ * @param  {position} How much the element should be moved - 50%, 20px, ..
+ * @param  {dimension} What is the element height or width - 100px, 20px, ..
+ * @return property to move the element
+ */
+/*
+ * makeAnimation
+ * Execute passed Animation
+ * @param  {animation} Animation type and options - fadeIn 1s 1, ..
+ * @param  {animation-delay} After how long the animation should be executed - 2s, 9s, ..
+ * @param  {animation-fill-mode} Status of the box after animation - forward, ..
+ * @return property to move the element
+ */
+/** Animations **/
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes moveFirst {
+  100% {
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+  }
+}
+
+@keyframes moveSecond {
+  100% {
+    top: calc(50% - 100px);
+    right: calc(50% - 100px);
+  }
+}
+
+@keyframes moveThird {
+  100% {
+    bottom: calc(50% - 100px);
+    right: calc(50% - 100px);
+  }
+}
+
+@keyframes moveFourth {
+  100% {
+    bottom: calc(50% - 100px);
+    left: calc(50% - 100px);
+  }
+}
+
+/** Style **/
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.square {
+  color: #acacac;
+  height: 100px;
+  font-family: Helvetica, Arial;
+  font-size: 16px;
+  line-height: 100px;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 100px;
+}
+
+.square.cyan {
+  animation: moveFirst 1s ease;
+  animation-delay: 8s;
+  animation-fill-mode: forwards;
+  left: 0;
+  top: 0;
+}
+
+.square.cyan > div {
+  animation: fadeOut 1s 1;
+  animation-delay: 9s;
+  animation-fill-mode: forwards;
+}
+
+.square.cyan > div div {
+  animation: fadeIn 1s 1;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+  background: Cyan;
+  opacity: 0;
+}
+
+.square.magenta {
+  animation: moveSecond 1s ease;
+  animation-delay: 7s;
+  animation-fill-mode: forwards;
+  right: 0;
+  top: 0;
+}
+
+.square.magenta > div {
+  animation: fadeOut 1s 1;
+  animation-delay: 10s;
+  animation-fill-mode: forwards;
+}
+
+.square.magenta > div div {
+  animation: fadeIn 1s 1;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  background: Magenta;
+  opacity: 0;
+}
+
+.square.yellow {
+  animation: moveThird 1s ease;
+  animation-delay: 6s;
+  animation-fill-mode: forwards;
+  bottom: 0;
+  right: 0;
+}
+
+.square.yellow > div {
+  animation: fadeOut 1s 1;
+  animation-delay: 11s;
+  animation-fill-mode: forwards;
+}
+
+.square.yellow > div div {
+  animation: fadeIn 1s 1;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+  background: Yellow;
+  opacity: 0;
+}
+
+.square.black {
+  animation: moveFourth 1s ease;
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
+  bottom: 0;
+  left: 0;
+}
+
+.square.black > div {
+  animation: fadeOut 1s 1;
+  animation-delay: 12s;
+  animation-fill-mode: forwards;
+}
+
+.square.black > div div {
+  animation: fadeIn 1s 1;
+  animation-delay: 4s;
+  animation-fill-mode: forwards;
+  background: Black;
+  opacity: 0;
+}

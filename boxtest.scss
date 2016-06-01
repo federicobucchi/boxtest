@@ -1,0 +1,191 @@
+/** Variables **/
+// Box generic
+$boxHeight: 100px;
+$boxWidth: 100px;
+$boxFontColor: #acacac;
+$boxFontFace: Helvetica;
+$boxFontSize: 16px;
+// Box specific
+$firstBoxColor: Cyan;
+$secondBoxColor: Magenta;
+$thirdBoxColor: Yellow;
+$fourthBoxColor: Black;
+
+/** Functions **/
+/*
+ * makeCentered
+ * Move box to Center
+ * @param  {property} From where the element should be moved - top, bottom, right, left, ..
+ * @param  {position} How much the element should be moved - 50%, 20px, ..
+ * @param  {dimension} What is the element height or width - 100px, 20px, ..
+ * @return property to move the element
+ */
+@mixin makeCentered ($property, $position, $dimension) {
+  #{$property}: calc(#{$position} - #{$dimension});
+}
+
+/*
+ * makeAnimation
+ * Execute passed Animation
+ * @param  {animation} Animation type and options - fadeIn 1s 1, ..
+ * @param  {animation-delay} After how long the animation should be executed - 2s, 9s, ..
+ * @param  {animation-fill-mode} Status of the box after animation - forward, ..
+ * @return property to move the element
+ */
+@mixin makeAnimation ($animation, $animation-delay, $animation-fill-mode) {
+  animation: $animation;
+  animation-delay: $animation-delay;
+  animation-fill-mode: $animation-fill-mode;
+}
+
+/** Animations **/
+// Show box with effect
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+// Hide box with effect
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+// Move First Box from Top-Left to Center
+@keyframes moveFirst {
+  100% {
+    @include makeCentered(top, 50%, $boxHeight);
+    @include makeCentered(left, 50%, $boxWidth);
+  }
+}
+
+// Move Second Box from Top-Right to Center
+@keyframes moveSecond {
+  100% {
+    @include makeCentered(top, 50%, $boxHeight);
+    @include makeCentered(right, 50%, $boxWidth);
+  }
+}
+
+// Move Third Box from Bottom-Right to Center
+@keyframes moveThird {
+  100% {
+    @include makeCentered(bottom, 50%, $boxHeight);
+    @include makeCentered(right, 50%, $boxWidth);
+  }
+}
+
+// Move Fourth Box from Bottom-Left to Center
+@keyframes moveFourth {
+  100% {
+    @include makeCentered(bottom, 50%, $boxHeight);
+    @include makeCentered(left, 50%, $boxWidth);
+  }
+}
+
+/** Style **/
+// Body reset
+body {
+  margin: 0;
+  padding: 0;
+}
+
+// Box styles / animations
+.square {
+  color: $boxFontColor;
+  height: $boxHeight;
+  font-family: $boxFontFace, Arial;
+  font-size: $boxFontSize;
+  line-height: $boxHeight;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: $boxWidth;
+
+  &.cyan {
+    // Move box to center
+    @include makeAnimation(moveFirst 1s ease, 8s, forwards);
+    left: 0;
+    top: 0;
+
+    & > div {
+      // Hide box
+      @include makeAnimation(fadeOut 1s 1, 9s, forwards);
+
+      div {
+        // Show box
+        @include makeAnimation(fadeIn 1s 1, 1s, forwards);
+        background: $firstBoxColor;
+        opacity: 0;
+      }
+    }
+  }
+
+  &.magenta {
+    // Move box to center
+    @include makeAnimation(moveSecond 1s ease, 7s, forwards);
+    right: 0;
+    top: 0;
+
+    & > div {
+      // Hide box
+      @include makeAnimation(fadeOut 1s 1, 10s, forwards);
+
+      div {
+        // Show box
+        @include makeAnimation(fadeIn 1s 1, 2s, forwards);
+        background: $secondBoxColor;
+        opacity: 0;
+      }
+    }
+  }
+
+  &.yellow {
+    // Move box to center
+    @include makeAnimation(moveThird 1s ease, 6s, forwards);
+    bottom: 0;
+    right: 0;
+
+    & > div {
+      // Hide box
+      @include makeAnimation(fadeOut 1s 1, 11s, forwards);
+
+      div {
+        // Show box
+        @include makeAnimation(fadeIn 1s 1, 3s, forwards);
+        background: $thirdBoxColor;
+        opacity: 0;
+      }
+    }
+  }
+
+  &.black {
+    // Move box to center
+    @include makeAnimation(moveFourth 1s ease, 5s, forwards);
+    bottom: 0;
+    left: 0;
+
+    & > div {
+      // Hide box
+      @include makeAnimation(fadeOut 1s 1, 12s, forwards);
+
+      div {
+        // Show box
+        @include makeAnimation(fadeIn 1s 1, 4s, forwards);
+        background: $fourthBoxColor;
+        opacity: 0;
+      }
+    }
+  }
+}
